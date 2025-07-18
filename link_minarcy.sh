@@ -2,38 +2,54 @@
 
 set -euo pipefail
 
-SOURCE_DIR="$HOME/Development/minarchy/default"
-TARGET_DIR="$HOME/.local/share/omarchy/default"
+# Define your map: source -> target
+declare -A dir_map
 
-# Ensure SOURCE_DIR exists
-if [ ! -d "$SOURCE_DIR" ]; then
-  echo "Source directory does not exist: $SOURCE_DIR"
-  exit 1
-fi
+# Example mappings
+dir_map["$HOME/Development/minarchy/default"]="$HOME/.local/share/omarchy/default"
+dir_map["$HOME/Development/minarchy/bin"]="$HOME/.local/share/omarchy/bin"
 
-# Ensure TARGET_DIR exists
-mkdir -p "$TARGET_DIR"
+for SOURCE_DIR in "${!dir_map[@]}"; do
+  TARGET_DIR="${dir_map[$SOURCE_DIR]}"
 
-# Loop through all files in SOURCE_DIR
-find "$SOURCE_DIR" -type f | while read -r src_file; do
-  # Determine relative path
-  rel_path="${src_file#$SOURCE_DIR/}"
+  echo "🔄 Processing:"
+  echo "   Source: $SOURCE_DIR"
+  echo "   Target: $TARGET_DIR"
 
-  # Determine target file path
-  tgt_file="$TARGET_DIR/$rel_path"
-
-  # Create target directory if it doesn't exist
-  mkdir -p "$(dirname "$tgt_file")"
-
-  # Remove existing file or symlink at target location
-  if [ -e "$tgt_file" ] || [ -L "$tgt_file" ]; then
-    rm -rf "$tgt_file"
+  # Ensure SOURCE_DIR exists
+  if [ ! -d "$SOURCE_DIR" ]; then
+    echo "❌ Source directory does not exist: $SOURCE_DIR"
+    continue
   fi
 
-  # Create symbolic link
-  ln -s "$src_file" "$tgt_file"
+  # Create all directories first (including empty ones)
+  find "$SOURCE_DIR" -type d | while read -r src_dir; do
+    rel_dir="${src_dir#$SOURCE_DIR/}"
+    tgt_dir="$TARGET_DIR/$rel_dir"
+    mkdir -p "$tgt_dir"
+  done
 
-  echo "Linked: $tgt_file -> $src_file"
+  # Process all files
+  find "$SOURCE_DIR" -type f | while read -r src_file; do
+    rel_path="${src_file#$SOURCE_DIR/}"
+    tgt_file="$TARGET_DIR/$rel_path"
+
+    # Create parent directory if missing (extra safety)
+    mkdir -p "$(dirname "$tgt_file")"
+
+    # Remove existing file or symlink at target location
+    if [ -e "$tgt_file" ] || [ -L "$tgt_file" ]; then
+      rm -rf "$tgt_file"
+    fi
+
+    # Create symbolic link
+    ln -s "$src_file" "$tgt_file"
+
+    echo "🔗 Linked: $tgt_file -> $src_file"
+  done
+
+  echo "✅ Finished syncing: $SOURCE_DIR -> $TARGET_DIR"
+  echo "--------------------------------------------"
 done
 
-echo "✅ All files in $TARGET_DIR replaced with symlinks to $SOURCE_DIR"
+echo "🎉 All mappings processed."
