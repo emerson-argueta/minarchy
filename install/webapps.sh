@@ -20,5 +20,5 @@ if [ -z "$OMARCHY_BARE" ]; then
   web2app "Sentry" https://sentry.io/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/sentry.png
   web2app "Asana" https://app.asana.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/asana.png
   web2app "X" https://x.com/ https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/x-light.png
-  web2app "Omarchy Manual" https://manuals.omamix.org/2/the-omarchy-manual https://manuals.omamix.org/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6NDgsInB1ciI6ImJsb2JfaWQifX0=--c26606490139480f5bcb3cf91b09fc45825007f6/omarchy.jpg?disposition=attachment
+  web2app "Omarchy Manual" https://manuals.omamix.org/2/the-omarchy-manual https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/arch-linux.png
 fi
