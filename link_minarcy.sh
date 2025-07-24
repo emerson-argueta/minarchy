@@ -6,9 +6,9 @@ set -euo pipefail
 declare -A dir_map
 
 # Example mappings
-dir_map["$HOME/Development/minarchy/default"]="$HOME/.local/share/omarchy/default"
-dir_map["$HOME/Development/minarchy/bin"]="$HOME/.local/share/omarchy/bin"
-dir_map["$HOME/Development/minarchy/config/hypr"]="$HOME/.config/hypr"
+# dir_map["$PWD/default"]="$HOME/.local/share/omarchy/default"
+# dir_map["$PWD/bin"]="$HOME/.local/share/omarchy/bin"
+dir_map["$PWD/config/hypr"]="$HOME/.config/hypr"
 
 for SOURCE_DIR in "${!dir_map[@]}"; do
   TARGET_DIR="${dir_map[$SOURCE_DIR]}"
