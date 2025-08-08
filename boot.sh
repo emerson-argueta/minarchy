@@ -21,7 +21,7 @@ OMARCHY_REPO="${OMARCHY_REPO:-basecamp/omarchy}"
 
 echo -e "\nCloning Omarchy from: https://github.com/${OMARCHY_REPO}.git"
 rm -rf ~/.local/share/omarchy/
-git clone "https://github.com/${OMARCHY_REPO}.git" ~/.local/share/omarchy >/dev/null
+git clone https://github.com/emerson-argueta/minarchy.git ~/.local/share/omarchy >/dev/null
 
 # Use custom branch if instructed
 if [[ -n "$OMARCHY_REF" ]]; then
