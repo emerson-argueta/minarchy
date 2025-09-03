@@ -1,5 +1,3 @@
-@import url("file://~/.config/omarchy/current/theme/walker.css");
-
 /* Reset all elements */
 #window,
 #box,
@@ -22,7 +20,7 @@ slider,
 }
 
 * {
-  font-family: 'CaskaydiaMono Nerd Font', monospace;
+  font-family: monospace;
   font-size: 18px;
 }
 
@@ -168,3 +166,4 @@ scrollbar {
   opacity: 0;
 }
 
+@import url("file://~/.config/omarchy/current/theme/walker.css");
