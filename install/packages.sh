@@ -100,6 +100,7 @@ sudo pacman -S --noconfirm --needed \
   swayosd \
   system-config-printer \
   tldr \
+  tmux \
   tree-sitter-cli \
   ttf-cascadia-mono-nerd \
   ttf-ia-writer \
