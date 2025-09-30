@@ -1,0 +1,6 @@
+root springs-user-service 1235 10.50.129.236 3306
+root springs-user-service 1238 10.50.130.6 3306
+root springs-user-service 57566 scharter-data.xcoe.online 57566
+root oasis 5432 127.0.0.1 5432
+root oasis 6432 127.0.0.1 6432
+

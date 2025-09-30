@@ -65,3 +65,58 @@ img2png() {
     -define png:exclude-chunk=all \
     "${1%.*}.png"
 }
+
+#start running db tunnels
+gcloud-db-tunnels() {
+  local config_file="$HOME/.config/gcloud-db-tunnels"
+  local tunnel_count=0
+  local pids=() # Array to store PIDs of background tunnels
+
+  # Check if the configuration file exists
+  if [[ ! -f "$config_file" ]]; then
+      echo "Error: Configuration file not found at '$config_file'." >&2
+      echo "Please create it and add your tunnel configurations." >&2
+      echo "each line in the file should look like this: <user> <compute-instance-name> <local-port> <instance-db-host> <instance-db-port>" >&2
+      return 1
+  fi
+
+  echo "Attempting to start gcloud database tunnels from '$config_file'..."
+
+  # Read the configuration file line by line
+  while IFS= read -r line || [[ -n "$line" ]]; do
+      # Skip empty lines and lines starting with '#' (comments)
+      if [[ -z "$line" || "${line#"${line%%[![:space:]]*}"}" =~ ^# ]]; then
+          continue
+      fi
+      # Parse the line into individual components
+      read -r -a args <<< "$line"
+      # Validate the number of arguments
+      if [[ "${#args[@]}" -ne 5 ]]; then
+          echo "Error: Incorrect format in config file line: '$line'" >&2
+          echo "Expected 5 arguments: <user> <instance-name> <local-port> <db-host> <db-port>" >&2
+          return 1
+      fi
+      local user="${args[0]}"
+      local instance_name="${args[1]}"
+      local local_port="${args[2]}"
+      local instance_db_host="${args[3]}"
+      local instance_db_port="${args[4]}"
+      echo "Creating tmux pane and starting tunnel for ${user}@${instance_name} (local:${local_port} -> ${instance_db_host}:${instance_db_port})..."
+      # Construct the gcloud command string
+      local gcloud_command="gcloud compute ssh ${user}@${instance_name} -- -N -L ${local_port}:${instance_db_host}:${instance_db_port}"
+      # Create a new tmux pane and send the command to it
+      # 'tmux split-window -h' creates a new horizontal pane
+      # 'tmux send-keys' sends the command string and then 'C-m' (Enter) to execute it
+      tmux split-window -h
+      tmux send-keys "$gcloud_command" C-m
+      tunnel_count=$((tunnel_count + 1))
+  done < "$config_file"
+
+  if [[ "$tunnel_count" -eq 0 ]]; then
+    echo "No valid tunnel configurations found in '$config_file'."
+    return 0
+  else
+    echo "Successfully started $tunnel_count tunnel(s) in new tmux panes."
+    echo "You may need to switch between panes (e.g., Ctrl+b ; or Ctrl+b <arrow keys>) to see them."
+  fi
+}
