@@ -4,3 +4,5 @@ run_logged $OMARCHY_INSTALL/packaging/lazyvim.sh
 run_logged $OMARCHY_INSTALL/packaging/icons.sh
 run_logged $OMARCHY_INSTALL/packaging/webapps.sh
 run_logged $OMARCHY_INSTALL/packaging/tuis.sh
+run_logged $OMARCHY_INSTALL/packaging/tmux.sh
+run_logged $OMARCHY_INSTALL/packaging/gcloud.sh
