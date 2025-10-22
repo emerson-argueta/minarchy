@@ -12,7 +12,7 @@ CONFIG_FILE="$CONFIG_DIR/tmux.conf"
 TPM_REPO="https://github.com/tmux-plugins/tpm"
 
 echo "Checking for OMARCHY_REPO environment variable..."
-if [ -z "$OMARCHY_REPO" ]; then
+if [ -z "$OMARCHY_INSTALL" ]; then
   echo "Error: OMARCHY_REPO environment variable is not set." >&2
   echo "Please set it to the path of your config repository." >&2
   exit 1
