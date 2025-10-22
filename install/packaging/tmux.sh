@@ -11,15 +11,8 @@ CONFIG_DIR="$HOME/.config/tmux"
 CONFIG_FILE="$CONFIG_DIR/tmux.conf"
 TPM_REPO="https://github.com/tmux-plugins/tpm"
 
-echo "Checking for OMARCHY_REPO environment variable..."
-if [ -z "$OMARCHY_INSTALL" ]; then
-  echo "Error: OMARCHY_REPO environment variable is not set." >&2
-  echo "Please set it to the path of your config repository." >&2
-  exit 1
-fi
-
 mkdir -p $CONFIG_DIR
-SOURCE_CONFIG_FILE="$OMARCHY_REPO/config/tmux/tmux.conf"
+SOURCE_CONFIG_FILE="$OMARCHY_INSTALL/config/tmux/tmux.conf"
 if [ ! -f "$SOURCE_CONFIG_FILE" ]; then
   echo "Error: Source config file not found at $SOURCE_CONFIG_FILE" >&2
   exit 1
