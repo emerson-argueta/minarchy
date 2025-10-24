@@ -9,27 +9,38 @@ hyprctl activeworkspace -j | jq -r '.id' > ~/.cache/hypr_last_workspace # Defaul
 
 handle() {
     local WORKSPACE_NAME=""
-    # $1 = event name (e.g., "workspacev2")
-    # $2 = event data (e.g., "1,1" or "special:term,HDMI-A-1")
+    local CURRENT_WORKSPACE=""
+    local LAST_WORKSPACE=""
     if [[ $1 == "workspacev2" ]]; then
-        # Data is WORKSPACEID,WORKSPACENAME. We want WORKSPACENAME.
-        WORKSPACE_NAME=$(echo "$2" | cut -d',' -f2)
+      # Data is WORKSPACEID,WORKSPACENAME. We want WORKSPACENAME. This should be done in the while loop
+      WORKSPACE_NAME=$(echo "$2")
     elif [[ $1 == "activespecial" ]]; then
-        # Data is WORKSPACENAME,MONNAME. We want WORKSPACENAME.
-        WORKSPACE_NAME=$(echo "$2" | cut -d',' -f1)
+      # Data is WORKSPACENAME,MONNAME. We want WORKSPACENAME. This should be done in the while loop
+      WORKSPACE_NAME=$(echo "$2")
     fi
-    # If the name is empty (e.g., from closing a special workspace),
-    # we ignore it. The subsequent "workspacev2" event will log
-    # the new regular workspace.
+
+    if [[ $1 == "activespecial" && -z "$WORKSPACE_NAME" ]]; then
+      # This event means a special workspace was *closed*.
+      # We are now on the last regular workspace.
+      # We must swap the cache files.
+      CURRENT_WORKSPACE=$(cat ~/.cache/hypr_current_workspace) # e.g., "special:term"
+      LAST_WORKSPACE=$(cat ~/.cache/hypr_last_workspace)       # e.g., "1"
+      echo "$CURRENT_WORKSPACE" > ~/.cache/hypr_last_workspace # last -> "special:term"
+      echo "$LAST_WORKSPACE" > ~/.cache/hypr_current_workspace   # current -> "1"
+      return
+    fi
+
+    echo "workspace name: $WORKSPACE_NAME"
     if [ -z "$WORKSPACE_NAME" ]; then
-        return
+      return
     fi
-    # Now we have a valid name, update the cache.
+
     CURRENT_WORKSPACE=$(cat ~/.cache/hypr_current_workspace)
     # Only update if the workspace has *actually* changed.
     if [[ "$CURRENT_WORKSPACE" != "$WORKSPACE_NAME" ]]; then
-        echo "$CURRENT_WORKSPACE" > ~/.cache/hypr_last_workspace
-        echo "$WORKSPACE_NAME" > ~/.cache/hypr_current_workspace
+      echo "last workspace: $CURRENT_WORKSPACE || current worksapce: $WORKSPACE_NAME"
+      echo "$CURRENT_WORKSPACE" > ~/.cache/hypr_last_workspace
+      echo "$WORKSPACE_NAME" > ~/.cache/hypr_current_workspace
     fi
 }
 
@@ -38,6 +49,12 @@ socat -u "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socke
 while read -r line; do
     # Format is event>>data
     event_name=$(echo "$line" | cut -d'>' -f1)
-    event_data=$(echo "$line" | cut -d'>' -f3) # '>>' delimiter
+    # Need a guard clause to only process [workspacev2, activespecial] events
+    if [[ "$event_name" != "workspacev2" && "$event_name" != "activespecial" ]]; then
+      continue
+    fi
+    raw_event_data=$(echo "$line" | cut -d'>' -f3)
+    event_data=$(echo "$raw_event_data" | cut -d',' -f1)
+    echo "event name: $event_name || event data: $event_data"
     handle "$event_name" "$event_data"
 done
