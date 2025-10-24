@@ -1,47 +1,37 @@
 #!/bin/bash
 
-# Create cache directory
-mkdir -p ~/.cache/hypr
-
-# Initialize cache files with current state
-hyprctl activeworkspace -j | jq -r '.name' > ~/.cache/hypr_current_workspace
-hyprctl activeworkspace -j | jq -r '.id' > ~/.cache/hypr_last_workspace # Default to active ID
+# Get the name of the currently active workspace
+INIT_WS_NAME=$(hyprctl activeworkspace -j | jq -r '.name')
+echo "$INIT_WS_NAME" > ~/.cache/hypr_current_workspace
+echo "$INIT_WS_NAME" > ~/.cache/hypr_last_workspace
+echo "$INIT_WS_NAME" > ~/.cache/hypr_last_regular_workspace
 
 handle() {
-    local WORKSPACE_NAME=""
-    local CURRENT_WORKSPACE=""
-    local LAST_WORKSPACE=""
-    if [[ $1 == "workspacev2" ]]; then
-      # Data is WORKSPACEID,WORKSPACENAME. We want WORKSPACENAME. This should be done in the while loop
-      WORKSPACE_NAME=$(echo "$2")
-    elif [[ $1 == "activespecial" ]]; then
-      # Data is WORKSPACENAME,MONNAME. We want WORKSPACENAME. This should be done in the while loop
-      WORKSPACE_NAME=$(echo "$2")
-    fi
+  local event_type="$1"
+  local new_workspace_name="$2"
+  if [[ "$event_type" == "activespecial" && -z "$new_workspace_name" ]]; then
+    local last_special_ws=$(cat ~/.cache/hypr_current_workspace)
+    local new_current_ws=$(cat ~/.cache/hypr_last_regular_workspace)
+    echo "$new_current_ws" > ~/.cache/hypr_current_workspace
+    echo "$last_special_ws" > ~/.cache/hypr_last_workspace
+    echo "current ==> $(cat ~/.cache/hypr_current_workspace), last ==> $(cat ~/.cache/hypr_last_regular_workspace)"
+    return
+  fi
 
-    if [[ $1 == "activespecial" && -z "$WORKSPACE_NAME" ]]; then
-      # This event means a special workspace was *closed*.
-      # We are now on the last regular workspace.
-      # We must swap the cache files.
-      CURRENT_WORKSPACE=$(cat ~/.cache/hypr_current_workspace) # e.g., "special:term"
-      LAST_WORKSPACE=$(cat ~/.cache/hypr_last_workspace)       # e.g., "1"
-      echo "$CURRENT_WORKSPACE" > ~/.cache/hypr_last_workspace # last -> "special:term"
-      echo "$LAST_WORKSPACE" > ~/.cache/hypr_current_workspace   # current -> "1"
-      return
-    fi
+  if [ -z "$new_workspace_name" ]; then
+    return
+  fi
 
-    echo "workspace name: $WORKSPACE_NAME"
-    if [ -z "$WORKSPACE_NAME" ]; then
-      return
+  local current_workspace=$(cat ~/.cache/hypr_current_workspace)
+  if [[ "$current_workspace" != "$new_workspace_name" ]]; then
+    echo "$current_workspace" > ~/.cache/hypr_last_workspace
+    echo "$new_workspace_name" > ~/.cache/hypr_current_workspace
+    if [[ "$event_type" == "workspacev2" ]]; then
+        echo "$new_workspace_name" > ~/.cache/hypr_last_regular_workspace
     fi
+    echo "current ==> $(cat ~/.cache/hypr_current_workspace), last ==> $(cat ~/.cache/hypr_last_regular_workspace)"
+  fi
 
-    CURRENT_WORKSPACE=$(cat ~/.cache/hypr_current_workspace)
-    # Only update if the workspace has *actually* changed.
-    if [[ "$CURRENT_WORKSPACE" != "$WORKSPACE_NAME" ]]; then
-      echo "last workspace: $CURRENT_WORKSPACE || current worksapce: $WORKSPACE_NAME"
-      echo "$CURRENT_WORKSPACE" > ~/.cache/hypr_last_workspace
-      echo "$WORKSPACE_NAME" > ~/.cache/hypr_current_workspace
-    fi
 }
 
 # Listen to Hyprland's event socket
