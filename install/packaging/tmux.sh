@@ -13,11 +13,6 @@ TPM_REPO="https://github.com/tmux-plugins/tpm"
 
 mkdir -p $CONFIG_DIR
 SOURCE_CONFIG_FILE="$OMARCHY_INSTALL/config/tmux/tmux.conf"
-if [ ! -f "$SOURCE_CONFIG_FILE" ]; then
-  echo "Error: Source config file not found at $SOURCE_CONFIG_FILE" >&2
-  exit 1
-fi
-
 if [ -f "$CONFIG_FILE" ]; then
   echo "Config file already present at $CONFIG_FILE. Skipping copy."
 else
