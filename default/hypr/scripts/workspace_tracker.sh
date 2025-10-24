@@ -39,12 +39,18 @@ socat -u "UNIX-CONNECT:$XDG_RUNTIME_DIR/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socke
 while read -r line; do
     # Format is event>>data
     event_name=$(echo "$line" | cut -d'>' -f1)
-    # Need a guard clause to only process [workspacev2, activespecial] events
     if [[ "$event_name" != "workspacev2" && "$event_name" != "activespecial" ]]; then
       continue
     fi
     raw_event_data=$(echo "$line" | cut -d'>' -f3)
-    event_data=$(echo "$raw_event_data" | cut -d',' -f1)
-    echo "event name: $event_name || event data: $event_data"
-    handle "$event_name" "$event_data"
+    local WORKSPACE_NAME=""
+    if [[ "$event_name" == "workspacev2" ]]; then
+        # Data is ID,WORKSPACENAME. We want WORKSPACENAME.
+        WORKSPACE_NAME=$(echo "$raw_event_data" | cut -d',' -f2)
+    elif [[ "$event_name" == "activespecial" ]]; then
+        # Data is WORKSPACENAME,MONNAME. We want WORKSPACENAME.
+        WORKSPACE_NAME=$(echo "$raw_event_data" | cut -d',' -f1)
+    fi
+    echo "event name: $event_name || workspace name: $WORKSPACE_NAME"
+    handle "$event_name" "$WORKSPACE_NAME"
 done
