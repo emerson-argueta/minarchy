@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# 1. Get all clients from Hyprland as JSON.
+# 2. Use jq to format each window as: "TITLE | ADDRESS"
+#    This is the only line that changed.
+WINDOWS_LIST=$(hyprctl -j clients | jq -r '.[] | "\(.class) | \(.address)"')
+
+# 3. Pipe this list into Omarchy's walker in dmenu mode.
+#    Get the selected line (e.g., "Google | 0x1234abcd")
+SELECTED=$(echo -e "$WINDOWS_LIST" | omarchy-launch-walker --dmenu --width 600 -p "Switch Window…" 2>/dev/null)
+
+# 4. If the user cancelled (empty selection), exit.
+if [ -z "$SELECTED" ]; then
+    exit 0
+fi
+
+# 5. Parse the selected line.
+#    This awk command still works perfectly.
+ADDRESS=$(echo "$SELECTED" | awk -F' | ' '{print $NF}')
+
+# 6. Use hyprctl --batch to run multiple commands:
+#    a) Focus the window (which also switches to its workspace).
+#    b) Make the newly focused window fullscreen.
+hyprctl --batch "dispatch focuswindow address:${ADDRESS}; dispatch fullscreen, 1"
