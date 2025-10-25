@@ -4,8 +4,7 @@
 #    This regex matches 'chromium', 'google-chrome', etc.
 hyprctl dispatch focuswindow 'class:^(chromium|Chromium|google-chrome|Google-chrome)$'
 
-# 2. Wait a fraction of a second for the focus to switch
-sleep 0.05
+sleep 0.2
 
 # 3. Use wtype to simulate "Ctrl+Shift+A" (Chrome's tab search)
 wtype -M ctrl -M shift a -m ctrl -m shift
