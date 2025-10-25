@@ -3,7 +3,7 @@
 # 1. Get all clients from Hyprland as JSON.
 # 2. Use jq to format each window as: "TITLE | ADDRESS"
 #    This is the only line that changed.
-WINDOWS_LIST=$(hyprctl -j clients | jq -r '.[] | "\(.class) | \(.address)"')
+WINDOWS_LIST=$(hyprctl -j clients | jq -r '.[] | " \(.title) \(.class) | \(.address)"')
 
 # 3. Pipe this list into Omarchy's walker in dmenu mode.
 #    Get the selected line (e.g., "Google | 0x1234abcd")
