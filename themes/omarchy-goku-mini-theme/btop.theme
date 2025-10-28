@@ -11,13 +11,13 @@ theme[title]="#a78e8e"
 theme[hi_fg]="#b69b9b"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#ece5e5"
+theme[selected_bg]="#957777"
 
 # Foreground color of selected item in processes box
 theme[selected_fg]="#000000"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#ece5e5"
+theme[inactive_fg]="#957777"
 
 # Misc colors for processes box including mini cpu graphs, details memory graph and details status text
 theme[proc_misc]="#a78e8e"
@@ -27,27 +27,27 @@ theme[cpu_box]="#b49a9a"
 theme[mem_box]="#b49a9a"
 theme[net_box]="#b49a9a"
 theme[proc_box]="#b49a9a"
-theme[div_line]="#ece5e5"
+theme[div_line]="#957777"
 
 # Gradient for all meters and graphs
 theme[temp_start]="#b69b9b"
-theme[temp_mid]="#e7a95e"
+theme[temp_mid]="#bf8c4d"
 theme[temp_end]="#b49a9a"
 
 
 theme[cpu_start]="#b69b9b"
-theme[cpu_mid]="#e7a95e"
+theme[cpu_mid]="#bf8c4d"
 theme[cpu_end]="#b49a9a"
 
 
-theme[free_start]="#e7a95e"
-theme[free_mid]="#c2a6a6"
-theme[free_end]="#c2a6a6"
+theme[free_start]="#bf8c4d"
+theme[free_mid]="#745108"
+theme[free_end]="#745108"
 
 
-theme[cached_start]="#c2a6a6"
-theme[cached_mid]="#c2a6a6"
-theme[cached_end]="#c2a6a6"
+theme[cached_start]="#745108"
+theme[cached_mid]="#745108"
+theme[cached_end]="#745108"
 
 
 theme[available_start]="#b69b9b"
@@ -60,11 +60,11 @@ theme[used_mid]="#b49a9a"
 theme[used_end]="#b49a9a"
 
 
-theme[download_start]="#c2a6a6"
+theme[download_start]="#745108"
 theme[download_mid]="#b69b9b"
-theme[download_end]="#e7a95e"
+theme[download_end]="#bf8c4d"
 
 
-theme[upload_start]="#c2a6a6"
+theme[upload_start]="#745108"
 theme[upload_mid]="#b69b9b"
-theme[upload_end]="#e7a95e"
+theme[upload_end]="#bf8c4d"
