@@ -6,25 +6,25 @@
  */
 
 /* Dynamic Color Palette */
-@define-color background #2d2929;
-@define-color foreground #ffffff;
+@define-color background #000000;
+@define-color foreground #f6eae4;
 
-@define-color color0 #2d2929;
-@define-color color1 #bfafaf;
-@define-color color2 #c8baba;
-@define-color color3 #d4c9c9;
+@define-color color0 #000000;
+@define-color color1 #e3bebe;
+@define-color color2 #f1c8c8;
+@define-color color3 #f1cc9f;
 @define-color color4 #ceae77;
-@define-color color5 #cfa279;
+@define-color color5 #efd3c6;
 @define-color color6 #c5b6b6;
-@define-color color7 #e1dada;
-@define-color color8 #9e9090;
-@define-color color9 #bfafaf;
-@define-color color10 #c8baba;
-@define-color color11 #d4c9c9;
-@define-color color12 #b0a0a0;
-@define-color color13 #baa9a9;
-@define-color color14 #c5b6b6;
-@define-color color15 #ffffff;
+@define-color color7 #f3e2e2;
+@define-color color8 #b9aeae;
+@define-color color9 #ffc5c5;
+@define-color color10 #fde0e0;
+@define-color color11 #f6dca5;
+@define-color color12 #ecd0ac;
+@define-color color13 #dfcebf;
+@define-color color14 #e5dbdb;
+@define-color color15 #f6eae4;
 
 /* Base GTK theme variables */
 @define-color theme_bg_color @background;

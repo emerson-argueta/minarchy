@@ -7,24 +7,24 @@ return {
             disable_italics = false,
             colors = {
                 -- Monotone shades (base00-base07)
-                base00 = "#2d2929", -- Default background
-                base01 = "#9e9090", -- Lighter background (status bars)
-                base02 = "#2d2929", -- Selection background
-                base03 = "#9e9090", -- Comments, invisibles
-                base04 = "#e1dada", -- Dark foreground
-                base05 = "#ffffff", -- Default foreground
-                base06 = "#ffffff", -- Light foreground
-                base07 = "#e1dada", -- Light background
+                base00 = "#000000", -- Default background
+                base01 = "#b9aeae", -- Lighter background (status bars)
+                base02 = "#000000", -- Selection background
+                base03 = "#b9aeae", -- Comments, invisibles
+                base04 = "#f3e2e2", -- Dark foreground
+                base05 = "#f6eae4", -- Default foreground
+                base06 = "#f6eae4", -- Light foreground
+                base07 = "#f3e2e2", -- Light background
 
                 -- Accent colors (base08-base0F)
-                base08 = "#bfafaf", -- Variables, errors, red
-                base09 = "#bfafaf", -- Integers, constants, orange
-                base0A = "#d4c9c9", -- Classes, types, yellow
-                base0B = "#c8baba", -- Strings, green
+                base08 = "#e3bebe", -- Variables, errors, red
+                base09 = "#ffc5c5", -- Integers, constants, orange
+                base0A = "#f1cc9f", -- Classes, types, yellow
+                base0B = "#f1c8c8", -- Strings, green
                 base0C = "#c5b6b6", -- Support, regex, cyan
                 base0D = "#ceae77", -- Functions, keywords, blue
-                base0E = "#cfa279", -- Keywords, storage, magenta
-                base0F = "#d4c9c9", -- Deprecated, brown/yellow
+                base0E = "#efd3c6", -- Keywords, storage, magenta
+                base0F = "#f6dca5", -- Deprecated, brown/yellow
             },
         },
         config = function(_, opts)
