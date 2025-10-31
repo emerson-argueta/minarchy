@@ -2,7 +2,7 @@
 theme[main_bg]="#000000"
 
 # Main text color
-theme[main_fg]="#f6eae4"
+theme[main_fg]="#e9d6cd"
 
 # Title color for boxes
 theme[title]="#efd3c6"
@@ -14,7 +14,7 @@ theme[hi_fg]="#c5b6b6"
 theme[selected_bg]="#b9aeae"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#f6eae4"
+theme[selected_fg]="#e9d6cd"
 
 # Color of inactive/disabled text
 theme[inactive_fg]="#b9aeae"

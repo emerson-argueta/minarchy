@@ -11,10 +11,10 @@ return {
                 base01 = "#b9aeae", -- Lighter background (status bars)
                 base02 = "#000000", -- Selection background
                 base03 = "#b9aeae", -- Comments, invisibles
-                base04 = "#f3e2e2", -- Dark foreground
-                base05 = "#f6eae4", -- Default foreground
-                base06 = "#f6eae4", -- Light foreground
-                base07 = "#f3e2e2", -- Light background
+                base04 = "#dacbcb", -- Dark foreground
+                base05 = "#e9d6cd", -- Default foreground
+                base06 = "#e9d6cd", -- Light foreground
+                base07 = "#dacbcb", -- Light background
 
                 -- Accent colors (base08-base0F)
                 base08 = "#e3bebe", -- Variables, errors, red
