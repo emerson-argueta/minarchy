@@ -2,7 +2,7 @@
 
 # --- Define the two shaders you want to swap between ---
 SHADER_A="tritone-dof"
-SHADER_B="tritone-film-grain"
+SHADER_B="tritone"
 
 # Get the name of the currently active shader
 CURRENT_SHADER=$(hyprshade current)
@@ -18,3 +18,5 @@ else
     # No shader (or a different shader) is on, default to Shader A
     hyprshade on "$SHADER_A"
 fi
+
+hyprctl seterror disable
