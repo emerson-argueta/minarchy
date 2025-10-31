@@ -1,70 +1,70 @@
 # Main background, empty for terminal default, need to be empty if you want transparent background
-theme[main_bg]="#000000"
+theme[main_bg]="#09090e"
 
 # Main text color
-theme[main_fg]="#e9d6cd"
+theme[main_fg]="#d9dded"
 
 # Title color for boxes
-theme[title]="#efd3c6"
+theme[title]="#e4d1fb"
 
 # Highlight color for keyboard shortcuts
-theme[hi_fg]="#c5b6b6"
+theme[hi_fg]="#b0eae0"
 
 # Background color of selected item in processes box
-theme[selected_bg]="#b9aeae"
+theme[selected_bg]="#383a4a"
 
 # Foreground color of selected item in processes box
-theme[selected_fg]="#e9d6cd"
+theme[selected_fg]="#d9dded"
 
 # Color of inactive/disabled text
-theme[inactive_fg]="#b9aeae"
+theme[inactive_fg]="#383a4a"
 
 # Misc colors for processes box including mini cpu graphs, details memory graph and details status text
-theme[proc_misc]="#efd3c6"
+theme[proc_misc]="#e4d1fb"
 
 # Box outline and divider line color
-theme[cpu_box]="#f1c8c8"
-theme[mem_box]="#f1c8c8"
-theme[net_box]="#f1c8c8"
-theme[proc_box]="#f1c8c8"
-theme[div_line]="#b9aeae"
+theme[cpu_box]="#c3ecbf"
+theme[mem_box]="#c3ecbf"
+theme[net_box]="#c3ecbf"
+theme[proc_box]="#c3ecbf"
+theme[div_line]="#383a4a"
 
 # Gradient for all meters and graphs
-theme[temp_start]="#c5b6b6"
-theme[temp_mid]="#ceae77"
-theme[temp_end]="#f1c8c8"
+theme[temp_start]="#b0eae0"
+theme[temp_mid]="#afccfc"
+theme[temp_end]="#c3ecbf"
 
 
-theme[cpu_start]="#c5b6b6"
-theme[cpu_mid]="#ceae77"
-theme[cpu_end]="#f1c8c8"
+theme[cpu_start]="#b0eae0"
+theme[cpu_mid]="#afccfc"
+theme[cpu_end]="#c3ecbf"
 
 
-theme[free_start]="#ceae77"
-theme[free_mid]="#f1cc9f"
-theme[free_end]="#f1cc9f"
+theme[free_start]="#afccfc"
+theme[free_mid]="#fdf3de"
+theme[free_end]="#fdf3de"
 
 
-theme[cached_start]="#f1cc9f"
-theme[cached_mid]="#f1cc9f"
-theme[cached_end]="#f1cc9f"
+theme[cached_start]="#fdf3de"
+theme[cached_mid]="#fdf3de"
+theme[cached_end]="#fdf3de"
 
 
-theme[available_start]="#c5b6b6"
-theme[available_mid]="#c5b6b6"
-theme[available_end]="#c5b6b6"
+theme[available_start]="#b0eae0"
+theme[available_mid]="#b0eae0"
+theme[available_end]="#b0eae0"
 
 
-theme[used_start]="#f1c8c8"
-theme[used_mid]="#f1c8c8"
-theme[used_end]="#f1c8c8"
+theme[used_start]="#c3ecbf"
+theme[used_mid]="#c3ecbf"
+theme[used_end]="#c3ecbf"
 
 
-theme[download_start]="#f1cc9f"
-theme[download_mid]="#c5b6b6"
-theme[download_end]="#ceae77"
+theme[download_start]="#fdf3de"
+theme[download_mid]="#b0eae0"
+theme[download_end]="#afccfc"
 
 
-theme[upload_start]="#f1cc9f"
-theme[upload_mid]="#c5b6b6"
-theme[upload_end]="#ceae77"
+theme[upload_start]="#fdf3de"
+theme[upload_mid]="#b0eae0"
+theme[upload_end]="#afccfc"
