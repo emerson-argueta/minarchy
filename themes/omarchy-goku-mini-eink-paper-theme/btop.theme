@@ -31,16 +31,16 @@ theme[div_line]="#494949"
 
 # Gradient for all meters and graphs
 theme[temp_start]="#000000"
-theme[temp_mid]="#000000"
+theme[temp_mid]="#6d0000"
 theme[temp_end]="#000000"
 
 
 theme[cpu_start]="#000000"
-theme[cpu_mid]="#000000"
+theme[cpu_mid]="#6d0000"
 theme[cpu_end]="#000000"
 
 
-theme[free_start]="#000000"
+theme[free_start]="#6d0000"
 theme[free_mid]="#000000"
 theme[free_end]="#000000"
 
@@ -62,9 +62,9 @@ theme[used_end]="#000000"
 
 theme[download_start]="#000000"
 theme[download_mid]="#000000"
-theme[download_end]="#000000"
+theme[download_end]="#6d0000"
 
 
 theme[upload_start]="#000000"
 theme[upload_mid]="#000000"
-theme[upload_end]="#000000"
+theme[upload_end]="#6d0000"
