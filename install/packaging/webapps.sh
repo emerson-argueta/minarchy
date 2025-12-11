@@ -6,7 +6,7 @@ omarchy-webapp-install "Google Mail" https://mail.google.com/mail GoogleMail.png
 omarchy-webapp-install "Google Chat" https://mail.google.com/chat GoogleChat.png
 omarchy-webapp-install "Gemini" https://gemini.google.com/app Gemini.png
 omarchy-webapp-install "YouTube" https://youtube.com/ YouTube.png
-omarchy-webapp-install "YouTubeMusic" https://youtube.com/ YouTubeMusic.png
+omarchy-webapp-install "YouTubeMusic" https://music.youtube.com/ YouTubeMusic.png
 omarchy-webapp-install "GitHub" https://github.com/ GitHub.png
 omarchy-webapp-install "GitLab" https://gitlab.com/ Gitlab.png
 omarchy-webapp-install "Figma" https://figma.com/ Figma.png
