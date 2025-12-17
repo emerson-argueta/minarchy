@@ -2,10 +2,12 @@
 springs-db-connections() {
   echo "Starting database tunnels in tmux..."
   rm -rf /cloudsql/*
-  tmux split-window -h "gcloud compute ssh root@springs-user-service -- -N -L 57566:scharter-data.xcoe.online:57566"
-  tmux split-window -h "gcloud compute ssh root@oasis -- -N -L 5432:127.0.0.1:5432"
-  tmux split-window -v "~/cloud-sql-proxy --unix-socket /cloudsql springs-258017:us-west1:apitest"
-  tmux split-window -v "~/cloud-sql-proxy --unix-socket /cloudsql springs-258017:us-west2:api"
-  tmux select-layout  tiled
-  echo "All connections initiated in tmux window."
+  tmux new-session -d -s sysadmin
+  tmux split-window -h -t sysadmin "gcloud compute ssh root@springs-user-service -- -N -L 57566:scharter-data.xcoe.online:57566"
+  tmux split-window -h -t sysadmin "gcloud compute ssh root@oasis -- -N -L 5432:127.0.0.1:5432"
+  tmux split-window -v -t sysadmin "~/cloud-sql-proxy --unix-socket /cloudsql springs-258017:us-west1:apitest"
+  tmux split-window -v -t sysadmin "~/cloud-sql-proxy --unix-socket /cloudsql springs-258017:us-west2:api"
+  tmux select-layout -t sysadmin tiled
+  echo "All connections initiated. Attaching to session..."
+  tmux attach-session -t sysadmin
 }
