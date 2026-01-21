@@ -11,3 +11,4 @@ omarchy-webapp-install "GitHub" https://github.com/ GitHub.png
 omarchy-webapp-install "GitLab" https://gitlab.com/ Gitlab.png
 omarchy-webapp-install "Figma" https://figma.com/ Figma.png
 omarchy-webapp-install "Zoom" https://app.zoom.us/wc/home Zoom.png "omarchy-webapp-handler-zoom %u" "x-scheme-handler/zoommtg;x-scheme-handler/zoomus"
+omarchy-webapp-install "Fizzy" https://app.fizzy.do/ Fizzy.png

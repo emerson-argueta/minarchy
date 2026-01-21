@@ -9,10 +9,10 @@ asdcontrol
 avahi
 bash-completion
 bat
-blueberry
+bluetui
+bolt
 brightnessctl
 btop
-cargo
 clang
 cups
 cups-browsed
@@ -21,8 +21,10 @@ cups-pdf
 docker
 docker-buildx
 docker-compose
+dotnet-runtime-9.0
 dust
 evince
+exfatprogs
 expac
 eza
 fastfetch
@@ -33,6 +35,7 @@ fd
 ffmpegthumbnailer
 fontconfig
 fzf
+ghostty
 github-cli
 gnome-calculator
 gnome-keyring
@@ -46,6 +49,7 @@ gvfs-smb
 hypridle
 hyprland
 hyprland-guiutils
+hyprland-preview-share-picker
 hyprlock
 hyprpicker
 hyprsunset
@@ -64,12 +68,12 @@ less
 libsecret
 libyaml
 libqalculate
-libreoffice
+libreoffice-fresh
 llvm
 localsend
 luarocks
 mako
-man
+man-db
 mariadb-libs
 mise
 mpv
@@ -86,6 +90,7 @@ obsidian
 omarchy-chromium
 omarchy-nvim
 omarchy-walker
+opencode
 pamixer
 pinta
 playerctl
@@ -99,6 +104,8 @@ python-poetry-core
 python-terminaltexteffects
 qt5-wayland
 ripgrep
+ruby
+rust
 satty
 sddm
 signal-desktop
@@ -113,6 +120,7 @@ system-config-printer
 tldr
 tmux
 tree-sitter-cli
+tobi-try
 ttf-cascadia-mono-nerd
 ttf-ia-writer
 ttf-jetbrains-mono-nerd
@@ -121,6 +129,7 @@ tzupdate
 ufw
 ufw-docker
 unzip
+usage
 uwsm
 waybar
 wayfreeze
@@ -138,4 +147,5 @@ xmlstarlet
 xournalpp
 yaru-icon-theme
 yay
+yq
 zoxide
