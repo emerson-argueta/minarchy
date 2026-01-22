@@ -13,6 +13,3 @@ uwsm-app -- alacritty --class "Database-manager" -e tmux new-session -A -s datab
 uwsm-app -- alacritty --class "Alacritty-sysadmin" -e bash -ic springs-db-connections &
 
 sleep 0.5
-hyprctl dispatch movetoworkspacesilent "2,class:^(Alacritty-sysadmin)$"
-hyprctl dispatch movetoworkspacesilent "3,class:^(Database-manager)$"
-hyprctl dispatch movetoworkspacesilent "1,class:^(Alacritty-dev)$"
