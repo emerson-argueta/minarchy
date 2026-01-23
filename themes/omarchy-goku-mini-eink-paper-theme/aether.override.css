@@ -5,7 +5,7 @@
  * Generated from palette colors selected in Aether
  */
 
-/* Dynamic Color Palette */
+/* Dynamic Color Palette - Optimized for E-Ink */
 @define-color background #ffffff;
 @define-color foreground #000000;
 
@@ -13,17 +13,19 @@
 @define-color color1 #000000;
 @define-color color2 #000000;
 @define-color color3 #000000;
-@define-color color4 #6d0000;
+/* color4 is your primary selection/accent. Moved from dark red to light-mid gray. */
+@define-color color4 #d0d0d0;
 @define-color color5 #000000;
 @define-color color6 #000000;
 @define-color color7 #000000;
-@define-color color8 #494949;
-@define-color color9 #ff0000;
-@define-color color10 #ffdb00;
+/* color8 is your 'subtle' gray. Lightened for better visibility. */
+@define-color color8 #e0e0e0;
+@define-color color9 #000000;
+@define-color color10 #000000;
 @define-color color11 #000000;
 @define-color color12 #000000;
 @define-color color13 #000000;
-@define-color color14 #111111;
+@define-color color14 #222222;
 @define-color color15 #000000;
 
 /* Base GTK theme variables */
