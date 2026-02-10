@@ -39,6 +39,16 @@ return {
         callback = function()
           vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "NONE", sp = "#000000" })
           -- 'sp' (special) sets the color of the underline specifically
+
+          -- LSP highlights: black background, white text
+          vim.api.nvim_set_hl(0, "LspReferenceText", { bg = "#000000", fg = "#ffffff" })
+          vim.api.nvim_set_hl(0, "LspReferenceRead", { bg = "#000000", fg = "#ffffff" })
+          vim.api.nvim_set_hl(0, "LspReferenceWrite", { bg = "#000000", fg = "#ffffff" })
+
+          -- Search highlights: black background, white text
+          vim.api.nvim_set_hl(0, "Search", { bg = "#000000", fg = "#ffffff" })
+          vim.api.nvim_set_hl(0, "IncSearch", { bg = "#000000", fg = "#ffffff" })
+          vim.api.nvim_set_hl(0, "CurSearch", { bg = "#000000", fg = "#ffffff" })
         end,
       })
 
