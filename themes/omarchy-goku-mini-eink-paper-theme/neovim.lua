@@ -29,9 +29,20 @@ return {
     },
     config = function(_, opts)
       require("aether").setup(opts)
-      vim.cmd.colorscheme("aether")
 
-      -- Enable hot reload
+      -- 1. Enable the cursorline feature
+      vim.opt.cursorline = true
+
+      -- 2. Define a callback to force our highlight whenever a colorscheme is loaded
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "aether",
+        callback = function()
+          vim.api.nvim_set_hl(0, "CursorLine", { underline = true, bg = "NONE", sp = "#000000" })
+          -- 'sp' (special) sets the color of the underline specifically
+        end,
+      })
+
+      vim.cmd.colorscheme("aether")
       require("aether.hotreload").setup()
     end,
   },
